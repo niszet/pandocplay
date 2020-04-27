@@ -10,16 +10,103 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:pandocplay.execute-cursor"
+		"onCommand:pandocplay.execute-cursor",
+		"onCommand:pandocplay.execute-in-codeblock"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "pandocplay.execute-cursor",
-				"title": "pandocplay: pandoc run code block at cursor"
+				"title": "Run Pandoc selection range"
+			},
+			{
+				"command": "pandocplay.execute-in-codeblock",
+				"title": "Run Pandoc Code Block"
+			}
+		],
+		"menus": {
+			"editor/context": [{
+				"when": "editorHasSelection",
+				"command": "pandocplay.execute-cursor"
+			},
+			{
+				"when": "editorHasSelection",
+				"command": "pandocplay.execute-in-codeblock"
 			}
 		]
+		},
+		"configuration": {
+			"title": "pandocplay configuration",
+			"properties": {
+				"Pandocplay.workdir": {
+					"type": "string",
+					"default": "",
+					"description": "Workdir to run Pandoc. Default is current dir."
+				},
+				"Pandocplay.from": {
+					"type": "string",
+					"default": "markdown",
+					"description": "Input file format. Followings are available in Pandoc 2.9.2. commonmark, creole, csv, docbook, docx, dokuwiki, epub, fb2, gfm, haddock, html, ipynb, jats, jira, json, latex, man, markdown, markdown_github, markdown_mmd, markdown_phpextra, markdown_strict, mediawiki, muse, native, odt, opml, org, rst, t2t, textile, tikiwiki, twiki, vimwiki."
+				},
+				"Pandocplay.to": {
+					"type": "string",
+					"default": "html",
+					"markdownDescription": "Output file format. Followings are available in Pandoc 2.9.2. asciidoc, asciidoctor, beamer, commonmark, context, docbook, docbook4, docbook5, docx, dokuwiki, dzslides, epub, epub2, epub3, fb2, gfm, haddock, html, html4, html5, icml, ipynb, jats, jats_archiving, jats_articleauthoring, jats_publishing, jira, json, latex, man, markdown, markdown_github, markdown_mmd, markdown_phpextra, markdown_strict, mediawiki, ms, muse, native, odt, opendocument, opml, org, pdf, plain, pptx, revealjs, rst, rtf, s5, slideous, slidy, tei, texinfo, textile, xwiki, zimwiki"
+				},
+				"Pandocplay.ext": {
+					"type": "string",
+					"default": "+autolink_bare_uris+tex_math_single_backslash+smart",
+					"description": "Specify markdown extension starts with **+**. Followings are available in Pandoc 2.9.2. abbreviations, all_symbols_escapable, amuse, angle_brackets_escapable, ascii_identifiers, auto_identifiers, autolink_bare_uris, backtick_code_blocks, blank_before_blockquote, blank_before_header, bracketed_spans, citations, compact_definition_lists, definition_lists, east_asian_line_breaks, emoji, empty_paragraphs, epub_html_exts, escaped_line_breaks, example_lists, fancy_lists, fenced_code_attributes, fenced_code_blocks, fenced_divs, footnotes, four_space_rule, gfm_auto_identifiers, grid_tables, hard_line_breaks, header_attributes, ignore_line_breaks, implicit_figures, implicit_header_references, inline_code_attributes, inline_notes, intraword_underscores, latex_macros, line_blocks, link_attributes, lists_without_preceding_blankline, literate_haskell, markdown_attribute, markdown_in_html_blocks, mmd_header_identifiers, mmd_link_attributes, mmd_title_block, multiline_tables, native_divs, native_spans, native_numbering, ntb, old_dashes, pandoc_title_block, pipe_tables, raw_attribute, raw_html, raw_tex, shortcut_reference_links, simple_tables, smart, space_in_atx_header, spaced_reference_links, startnum, strikeout, subscript, superscript, styles, task_lists, table_captions, tex_math_dollars, tex_math_double_backslash, tex_math_single_backslash, yaml_metadata_block, gutenberg."
+				},
+				"Pandocplay.args": {
+					"type": "string",
+					"default": "",
+					"description": "Arguments for Pandoc. See official document."
+				},
+				"Pandocplay.path": {
+					"type": "string",
+					"default": "",
+					"description": "Fill in if you want to set path to Pandoc."
+				},
+				"Pandocplay.output.file": {
+					"type": "boolean",
+					"default": false,
+					"description": "TODO: Specify output file as -o option. If you set true, you should set filename or extension"
+				},
+				"Pandocplay.input.formatDetect": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "TODO: When you use codeBlock input output file format will be detected automatically by its **FORMAT** attributes."
+				},
+				"Pandocplay.output.file.name": {
+					"type": "string",
+					"default": "",
+					"description": "TODO: If you want to output to the file, please specify its file name."
+				},
+				"Pandocplay.output.file.extension": {
+					"type": "boolean",
+					"default": true,
+					"description": "TODO: Output file name will be set from original file name with output file format"
+				},
+				"Pandocplay.output.pane": {
+					"type": "boolean",
+					"default": true,
+					"description": "TODO: Pandoc's output will be shown in OUTPUT pane."
+				},
+				"Pandocplay.output.add": {
+					"type": "boolean",
+					"default": false,
+					"description": "TODO: Pandoc's output will be added after cursor."
+				},
+				"Pandocplay.output.replace": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "TODO: **If true, selections will be deleted.**"
+				}
+
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
