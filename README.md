@@ -1,65 +1,84 @@
 # pandocplay README
 
-This is the README for your extension "pandocplay". After writing up a brief description, we recommend including the following sections.
+This extension is for running Pandoc with selected lines or code block in the document. User can use it with several package options. Please see OPTIONS in detail.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This package enables you to run Pandoc with selected text range and code block. 
 
-For example if there is an image subfolder under your extension project workspace:
+### Usage
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+You can use 2 ways of running Pandoc. When you select range of texts, you can use "Run Pandoc Selection Range" by right click. If you put the cursor in code block,  "Run Pandoc Code Block" can be used by right click. Of corse you can use these commands from command.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+You must install Pandoc executable. If you can run Pandoc as `pandoc` in command line, you can use this without setting. If you want to set path to specific Pandoc, set "Pandoc.Path" in option pane.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Following options are implemented preliminary.
 
-For example:
+- `Pandoc.path`
+- `Pandoc.args`
+- `Pandoc.extension`
+- `Pandoc.workdir`
+- `input.from`
+- `output.to`
+- `output.text.Add`
+- `output.pane`
 
-This extension contributes the following settings:
+### Pandoc.path
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+You can specify path to Pandoc executable. Default is "pandoc".
+
+### Pandoc.args
+
+You can add arguments for Pandoc. See [Options](https://pandoc.org/MANUAL.html#options) section in the manual of Pandoc for detail.
+
+### Pandoc.extension
+
+You can add extensions for Pandoc. See [Extensions](https://pandoc.org/MANUAL.html#extensions) section in the manual of Pandoc for detail.
+
+### Pandoc.workdir
+
+Running directory of pandoc. Default is current directory. Selected text range or code block is written to temp file when you exec pandoc. This temp file location and its filename cannot be changed.
+
+### input.from
+
+You can set input file format (This value is used with `--from` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
+
+
+### `output.to`
+
+You can set output file format (This value is used with `--to` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
+
+### output.text.Add
+
+You can add output result at the next line of mouse cursor or after code block.
+
+### output.pane
+
+You can select to output to OUTPUT pane or not.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+* Several functions are not implemented yet.
+* No test included.
+* Only checked under Windows. Not in mac or linux yet.
+
+## Contribution
+
+If you have any issues, please use issue of this repository.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release of pandocplay. This is preliminary and it still under developing.
 
 -----------------------------------------------------------------------------------------------------------
 
-## Working with Markdown
+## Acknowledgement
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+This extension is based on the book [Visual Studio Code実践ガイド —最新コードエディタを使い倒すテクニック](https://gihyo.jp/book/2020/978-4-297-11201-1) and its sample codes. 
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
