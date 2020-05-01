@@ -74,6 +74,10 @@ If you have any issues, please use issue of this repository.
 
 ## Release Notes
 
+### 0.0.2
+
+Add screen shot to use this extension (Run Pandoc Selection Range).
+
 ### 0.0.1
 
 Initial release of pandocplay. This is preliminary and it still under developing.
