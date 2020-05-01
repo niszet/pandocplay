@@ -2,7 +2,7 @@
 	"name": "pandocplay",
 	"displayName": "pandocplay",
 	"description": "Run pandoc selected text and code block",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "niszet",
 	"engines": {
 		"vscode": "^1.44.0"
