@@ -2,7 +2,7 @@
 	"name": "pandocplay",
 	"displayName": "pandocplay",
 	"description": "Run pandoc selected text and code block",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "niszet",
 	"engines": {
 		"vscode": "^1.44.0"
@@ -27,15 +27,16 @@
 			}
 		],
 		"menus": {
-			"editor/context": [{
-				"when": "editorHasSelection",
-				"command": "pandocplay.execute-cursor"
-			},
-			{
-				"when": "editorTextFocus",
-				"command": "pandocplay.execute-in-codeblock"
-			}
-		]
+			"editor/context": [
+				{
+					"when": "editorHasSelection",
+					"command": "pandocplay.execute-cursor"
+				},
+				{
+					"when": "editorTextFocus",
+					"command": "pandocplay.execute-in-codeblock"
+				}
+			]
 		},
 		"configuration": {
 			"title": "pandocplay configuration",
