@@ -54,6 +54,12 @@ If you have any issues, please use issue of this repository.
 
 ## Release Notes
 
+### 0.0.4
+
+* Implement `input.autoFindFormat` to add input format from code block's format. This option is only for codeblock mode.
+* Several messagebox for debug are disabled.
+* Update README.
+
 ### 0.0.3
 
 * Delete Replace function (Not implemented yet)
