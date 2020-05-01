@@ -83,10 +83,17 @@ export class Pandocplay {
             const pandoc_output = this.runCode(code, cwd, from, to, ext, args, path, pane_enable);
             //vscode.window.showInformationMessage(cwd);
 
-            // TODO: add or replace texts
+            // Replace can be done by delete after adding outputs. So, It should NOT be implemented.
             const output_add = this.getOutputAdd(conf);
+
+            const output_add_format = this.getOutputAddFormat(conf);
+
             if(output_add){
-              this.appendResult(editor, line, pandoc_output)
+              let local_to = "";
+              if (output_add_format){
+                local_to = to;
+              }
+              this.appendResult(editor, line, pandoc_output, local_to)
             }
 
             // TBD
@@ -104,7 +111,8 @@ export class Pandocplay {
     private appendResult = (
       editor: vscode.TextEditor,
       targetLine: number,
-      text: string
+      text: string,
+      to: string
     ) => {
 
       let eol: string;
@@ -114,7 +122,7 @@ export class Pandocplay {
         default:
           eol = "\n";
       }
-      const outputText = "```" + eol + text + eol + "```" + eol;
+      const outputText = "```" + to + eol + text + eol + "```" + eol;
       editor.edit(edit => {
         edit.insert(new vscode.Position(targetLine, 0), outputText);
       });
@@ -216,6 +224,15 @@ private getOutputReplace = (conf: vscode.WorkspaceConfiguration): boolean => {
 private getOutputAdd = (conf: vscode.WorkspaceConfiguration): boolean => {
   const output_add = conf.get("output.text.Add");
   if(output_add){
+    return true;
+  } else {
+    return false;
+  }
+};
+
+private getOutputAddFormat = (conf: vscode.WorkspaceConfiguration): boolean => {
+  const output_addFormat = conf.get("output.text.addFormat");
+  if(output_addFormat){
     return true;
   } else {
     return false;

@@ -86,15 +86,10 @@
 					"default": false,
 					"description": "Pandoc's output will be added after cursor."
 				},
-				"Pandocplay.output.text.Replace": {
-					"type": "boolean",
-					"default": false,
-					"markdownDescription": "TODO: Only for Selection. **If true, selections will be deleted.**"
-				},
 				"Pandocplay.output.text.addFormat": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "TODO: Add format name at code block"
+					"markdownDescription": "Add specified format name to output code block"
 				},
 				"Pandocplay.output.file.enable": {
 					"type": "boolean",

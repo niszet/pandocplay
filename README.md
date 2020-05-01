@@ -21,46 +21,24 @@ You must install Pandoc executable. If you can run Pandoc as `pandoc` in command
 Following options are implemented preliminary.
 
 - `Pandoc.path`
+  - You can specify path to Pandoc executable. Default is "pandoc".
 - `Pandoc.args`
+  - You can add arguments for Pandoc. See [Options](https://pandoc.org/MANUAL.html#options) section in the manual of Pandoc for detail.
 - `Pandoc.extension`
+  - You can add extensions for Pandoc. See [Extensions](https://pandoc.org/MANUAL.html#extensions) section in the manual of Pandoc for detail.
 - `Pandoc.workdir`
+  - Running directory of pandoc. Default is current directory. Selected text range or code block is written to temp file when you exec pandoc. This temp file location and its filename cannot be changed.
 - `input.from`
+  - You can set input file format (This value is used with `--from` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
 - `output.to`
+  - You can set output file format (This value is used with `--to` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
 - `output.text.Add`
+  - You can add output result at the next line of mouse cursor or after code block.
+- `output.text.addFormat`
+  - You can add output file format which specifed by `output.to` to the output result.
 - `output.pane`
+  - You can select to output to OUTPUT pane or not.
 
-### Pandoc.path
-
-You can specify path to Pandoc executable. Default is "pandoc".
-
-### Pandoc.args
-
-You can add arguments for Pandoc. See [Options](https://pandoc.org/MANUAL.html#options) section in the manual of Pandoc for detail.
-
-### Pandoc.extension
-
-You can add extensions for Pandoc. See [Extensions](https://pandoc.org/MANUAL.html#extensions) section in the manual of Pandoc for detail.
-
-### Pandoc.workdir
-
-Running directory of pandoc. Default is current directory. Selected text range or code block is written to temp file when you exec pandoc. This temp file location and its filename cannot be changed.
-
-### input.from
-
-You can set input file format (This value is used with `--from` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
-
-
-### `output.to`
-
-You can set output file format (This value is used with `--to` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
-
-### output.text.Add
-
-You can add output result at the next line of mouse cursor or after code block.
-
-### output.pane
-
-You can select to output to OUTPUT pane or not.
 
 ## Known Issues
 
@@ -73,6 +51,12 @@ You can select to output to OUTPUT pane or not.
 If you have any issues, please use issue of this repository.
 
 ## Release Notes
+
+### 0.0.3
+
+* Delete Replace function (Not implemented yet)
+* Implement `output.text.addFormat` to add output format.
+* Update README.
 
 ### 0.0.2
 
