@@ -10,6 +10,8 @@ This package enables you to run Pandoc with selected text range and code block.
 
 You can use 2 ways of running Pandoc. When you select range of texts, you can use "Run Pandoc Selection Range" by right click. If you put the cursor in code block,  "Run Pandoc Code Block" can be used by right click. Of corse you can use these commands from command.
 
+![Usage1](./image/usage1.gif)
+
 ## Requirements
 
 You must install Pandoc executable. If you can run Pandoc as `pandoc` in command line, you can use this without setting. If you want to set path to specific Pandoc, set "Pandoc.Path" in option pane.
