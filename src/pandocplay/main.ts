@@ -43,6 +43,7 @@ export class Pandocplay {
     try {
       const editor = vscode.window.activeTextEditor;
       const [code, line, format]  = this.detectSource(editor);
+      vscode.window.showInformationMessage(""+ format);
       this.run(code, line, format);
     } catch (e) {
       if (e instanceof NotFoundPandocError){
@@ -63,7 +64,18 @@ export class Pandocplay {
             const editor = vscode.window.activeTextEditor;
             const conf = vscode.workspace.getConfiguration("Pandocplay");
             const cwd = this.getWorkdir(editor);
-            const from = this.getFrom(conf);
+            let from = "";
+
+            // if detected_format is not null, from is detected_format.
+            if (detected_format !== null) {
+              from = detected_format as string;
+            } else {
+              from = this.getFrom(conf);
+            }
+
+            //vscode.window.showInformationMessage("1: "+ detected_format);
+            //vscode.window.showInformationMessage("2: "+ from);
+
             const to = this.getTo(conf);
             const ext = this.getExtension(conf);
             const args = this.getArgs(conf);
@@ -93,7 +105,7 @@ export class Pandocplay {
               if (output_add_format){
                 local_to = to;
               }
-              this.appendResult(editor, line, pandoc_output, local_to)
+              this.appendResult(editor, line, pandoc_output, local_to);
             }
 
             // TBD
@@ -155,7 +167,8 @@ export class Pandocplay {
       let end: vscode.Position | null = null;
       let format: string | null = null;
   
-      vscode.window.showInformationMessage("hello");
+      //For debug
+      //vscode.window.showInformationMessage("hello");
 
       for (let i = cursorLine; i >= 0; i--) {
         const line = editor.document.lineAt(i);
@@ -174,7 +187,7 @@ export class Pandocplay {
           } else{
             format = null;
           }
-          vscode.window.showInformationMessage("got: " + mat[1]);
+          //vscode.window.showInformationMessage("got: " + mat[1]);
 
           start = editor.document.lineAt(i + 1).range.start;
           break;
@@ -283,7 +296,17 @@ private getOutputFile = (conf: vscode.WorkspaceConfiguration): boolean => {
     return false;
   }
 };
-  
+
+// To show message to debug...
+private getDebug = (conf: vscode.WorkspaceConfiguration): boolean => {
+  const type = conf.get("debug.message");
+  if(type){
+    return true;
+  } else {
+    return false;
+  }
+};
+
     private getPath = (conf: vscode.WorkspaceConfiguration): string => {
       const path:string | undefined = conf.get("Pandoc.path");
       if(path){

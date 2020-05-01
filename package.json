@@ -69,7 +69,7 @@
 				"Pandocplay.input.autoFindFormat": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "TODO: When you use codeBlock input output file format will be detected automatically by its **FORMAT** attributes."
+					"markdownDescription": "When you use codeBlock input output file format will be detected automatically by its **FORMAT** attributes."
 				},
 				"Pandocplay.output.to": {
 					"type": "string",

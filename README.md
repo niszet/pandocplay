@@ -30,6 +30,8 @@ Following options are implemented preliminary.
   - Running directory of pandoc. Default is current directory. Selected text range or code block is written to temp file when you exec pandoc. This temp file location and its filename cannot be changed.
 - `input.from`
   - You can set input file format (This value is used with `--from` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
+- `input.autoFindFormat`
+  - You can set the input file format from codeblock's format automatically. This option is enabled when you use pandocplay as codeblock mode.
 - `output.to`
   - You can set output file format (This value is used with `--to` option.). To know available file format, see [General options](https://pandoc.org/MANUAL.html#general-options) section in the manual of Pandoc for detail.
 - `output.text.Add`
